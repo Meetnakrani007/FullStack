@@ -1,0 +1,17 @@
+.span1{
+     background-color: darkgoldenrod;
+     border: 3px solid black;
+    border-radius: 5px;
+    display: inline;
+}
+h2{
+    display: inline;
+    background-color: rgb(220, 154, 220);
+}
+span{
+    background-color: limegreen;
+    display: block;
+}
+div::selection{
+    background-color: blue;
+}

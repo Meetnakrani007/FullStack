@@ -1,0 +1,50 @@
+#outer{
+    height: 200px;
+    width: 70px;
+    border: 2px solid black;
+    background-color: slategrey;
+}
+.inner{
+     height: 50px;
+     width: 50px;
+     border: 2px solid black;
+     margin: 10px;
+     border-radius: 50%;
+}
+#red{
+    background-color: white;
+}
+#yellow{
+    background-color: white;
+}
+#green{
+    background-color: white;
+}
+#stand
+{
+    height: 170px;
+    width: 10px;
+    border: 2px solid black;
+    margin-left: 27px;
+    background-color: slategray;
+}
+#bottom{
+    height: 20px;
+    width: 65px;
+    border: 2px solid black;
+    margin-left: 0;
+    border-radius: 30%;
+    background-color: black;
+}
+#red:active
+{
+    background-color: red;
+}
+#yellow:active
+{
+    background-color: yellow;
+}
+#green:active
+{
+    background-color: green;
+}

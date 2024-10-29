@@ -1,0 +1,122 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+}
+.mainbox{
+    background: url(photo.jpg);
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.btn_one i{
+    color: white;
+    font-size: 30px;
+    font-weight: 700;
+    position: absolute;
+    left: 16px;
+    line-height: 60px;
+    cursor: pointer;
+    transition: all 0.1s linear;
+}
+.sidebar{
+    position: fixed;
+    left: -300px;
+    height: 100vh;
+    width: 300px;
+    background-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+    transition: all 0.3s linear;
+    
+}
+
+.sidebar .logo{
+    position: absolute;
+    width: 100%;
+    line-height: 60px;
+    box-shadow: 0 2px 4px rgba(255, 255, 255, 0.5);
+    height: 60px;
+    
+
+}
+.sidebar .logo a{
+    position: absolute;
+    left: 50px;
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 500;
+}
+.sidebar .btn_two i{
+    color: gray;
+    font-size: 25px;
+    line-height: 60px;
+    position: absolute;
+    left: 275px;
+    opacity: 0;
+    cursor: pointer;
+    transition: all 0.1s linear;
+}
+.sidebar .menu{
+    color: white;
+    position: absolute;
+    width: 100%;
+    top: 80px;
+
+}
+.sidebar .menu li{
+    margin: 6px;
+    padding: 15px 20px;
+
+}
+.sidebar .menu i,a {
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 500px;
+}
+.sidebar .menu i{
+    padding-right:5px;
+}
+.sidebar .social_midea{
+    color: white;
+    opacity: 0.5;
+    position: absolute;
+    bottom: 50px;
+    left: 25%;
+}
+
+.sidebar .social_midea i{
+    color: white;
+    opacity: 0.5;
+    padding: 0 5px;
+    font-size: 20px;
+}
+#check{
+    display: none;
+}
+.sidebar .menu li:hover{
+    border-radius: 5px;
+    box-shadow: 0 0 4px rgba(255, 255, 255, 0.5)
+}
+.btn_one i:hover{
+    font-size: 35px;
+}
+.btn_two i:hover{
+    font-size: 30px;
+}
+.sidebar .social_midea i:hover{
+    color: white;
+    opacity: 1;
+    transform: scale(1.1);
+}
+#check:checked ~.sidebar{
+    left: 0;
+}
+#check:checked ~.btn_one i{
+    opacity: 0;
+}
+#check:checked ~.sidebar .btn_two i{
+    opacity: 1;
+}
+    
