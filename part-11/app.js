@@ -40,3 +40,56 @@ changeColor ("red", 1000,()=>
     });
 });
 
+//call back nesting -> callback hell
+
+
+// function userData()
+// {
+//     let data = prompt("Enter Your data");
+//     savetoDb(data,()=>{
+//         console.log("Your data is saved...",data);
+//     },()=>
+//     {
+//         console.log("Your connection is slow...");
+//     });
+// }
+// userData();
+// function savetoDb(data,success,failure)
+// {
+//     let internetSpeed = Math.floor(Math.random() * 10) + 1;
+   
+    
+//     if(internetSpeed > 4)
+//     {
+//         success(data);
+//         userData();
+        
+//     }
+//     else
+//     {
+//         failure();
+//     }
+// }
+
+//resolve and reject promises
+
+
+function savetoDb(data)
+{
+    let internetSpeed = Math.floor(Math.random() * 10) + 1;
+   
+    return new Promise((success, failure) => {
+        let internetSpeed = Math.floor(Math.random() * 10) + 1; 
+    if(internetSpeed > 4)
+    {
+        success("Success : data is save");
+        console.log("Success : data is save");
+        
+    }
+    else
+    {
+        failure("Failure : Low connection....");
+    }
+    });
+}
+savetoDb("Meet Nakrani");
