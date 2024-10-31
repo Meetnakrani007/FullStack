@@ -92,4 +92,25 @@ function savetoDb(data)
     }
     });
 }
-savetoDb("Meet Nakrani");
+
+
+//then() and catch()
+
+
+
+let request = savetoDb("Meet Nakrani");
+request.then(()=>
+{
+    console.log("Success : data is saved");
+    console.log(request);
+
+}
+)
+.catch(()=>
+{
+    console.log("Failure : poor connection....");
+    console.log(request);
+
+})
+
+//promise chaining 
