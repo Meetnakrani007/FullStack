@@ -14,31 +14,80 @@ function three()
 }
 
 three();
-// call back hell
+// call back hell & //refactoring color code using of promises
 
 h1 = document.querySelector("h1");
-function changeColor(color,delay,nextColorChange)
+function changeColor(color,delay)
 {
-    setTimeout(()=>
+    return new Promise((resolve,reject)=>{
+        setTimeout(()=>
     {
         h1.style.color= color ;
-        nextColorChange();
-    },delay);
-   
-}
-changeColor ("red", 1000,()=>
-{
-    changeColor ("orange", 1000,()=>
+        resolve("Color update");
+    },delay);    
+    }   
+)}
+
+    changeColor("red",1000)
+    .then(()=>
     {
-        changeColor ("green", 1000,()=>
-        {
-            changeColor ("yellow", 1000,()=>
-            {
-                changeColor ("blue", 1000,)
-            });
-        })
-    });
-});
+        console.log("red color was completed");
+        return changeColor("orange",1000);
+    })
+    .then(()=>
+    {
+        console.log("orange color was completed");
+        return changeColor("green",1000);
+    })
+    .then(()=>
+    {
+        console.log("green color was completed");
+        return changeColor("blue",1000);
+    })
+    .then(()=>
+    {
+        console.log("blue color was completed");
+        return changeColor("yellow",1000);
+    })
+    .then(()=>
+    {
+        console.log("yellow color was completed");
+        return changeColor("gray",1000);
+    })
+    .then(()=>
+    {
+        console.log("gray color was completed");
+        return changeColor("pink",1000);
+    })
+    .then(()=>
+    {
+        console.log("pink color was completed");
+        return changeColor("purple",1000);
+    })
+    .then(()=>
+    {
+        console.log("purple color was completed");
+        return changeColor("cyan",1000);
+    })
+    .then(()=>
+    {
+        console.log("cyan color was completed");
+        
+    })
+
+// changeColor ("red", 1000,()=>
+// {
+//     changeColor ("orange", 1000,()=>
+//     {
+//         changeColor ("green", 1000,()=>
+//         {
+//             changeColor ("yellow", 1000,()=>
+//             {
+//                 changeColor ("blue", 1000,)
+//             });
+//         })
+//     });
+// });
 
 //call back nesting -> callback hell
 
