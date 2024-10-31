@@ -82,13 +82,13 @@ function savetoDb(data)
         let internetSpeed = Math.floor(Math.random() * 10) + 1; 
     if(internetSpeed > 4)
     {
-        success("Success : data is save");
+        success("data is saved");
         
         
     }
     else
     {
-        failure("Failure : Low connection....");
+        failure("Please try again ...");
     }
     });
 }
@@ -98,20 +98,20 @@ function savetoDb(data)
 
 
 
-savetoDb("Meet Nakrani").then(()=>
+savetoDb("Meet Nakrani").then((result)=>
 {
-    console.log("Success : data is saved , data 1 saved");
+    console.log("Success : data is saved , data 1 saved",result);
    return  savetoDb("hello world")
 }
 )
-.then(()=>{
-    console.log("Success : data is saved , data 2 saved");
+.then((result)=>{
+    console.log("Success : data is saved , data 2 saved",result);
     return savetoDb("Delta batch")
 })
-.then(()=>{
-    console.log("Success : data is saved , data 3 saved");
+.then((result)=>{
+    console.log("Success : data is saved , data 3 saved",result);
 })
-.catch(()=>
+.catch((error)=>
 {
-    console.log("Failure : poor connection....");
+    console.log("Failure : poor connection....",error);
 })
