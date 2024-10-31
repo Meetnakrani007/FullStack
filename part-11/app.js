@@ -83,7 +83,7 @@ function savetoDb(data)
     if(internetSpeed > 4)
     {
         success("Success : data is save");
-        console.log("Success : data is save");
+        
         
     }
     else
@@ -94,23 +94,24 @@ function savetoDb(data)
 }
 
 
-//then() and catch()
+//then() and catch() & promise chaining
 
 
 
-let request = savetoDb("Meet Nakrani");
-request.then(()=>
+savetoDb("Meet Nakrani").then(()=>
 {
-    console.log("Success : data is saved");
-    console.log(request);
-
+    console.log("Success : data is saved , data 1 saved");
+   return  savetoDb("hello world")
 }
 )
+.then(()=>{
+    console.log("Success : data is saved , data 2 saved");
+    return savetoDb("Delta batch")
+})
+.then(()=>{
+    console.log("Success : data is saved , data 3 saved");
+})
 .catch(()=>
 {
     console.log("Failure : poor connection....");
-    console.log(request);
-
 })
-
-//promise chaining 
