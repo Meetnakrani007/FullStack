@@ -35,7 +35,7 @@ async function getCol(state)
     }
     catch(err)
     {
-        console.log("Error",log);
+        console.log("Error",err);
         return [];
     }
     
