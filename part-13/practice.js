@@ -40,4 +40,3 @@ async function getCol(state)
     }
     
 }
-getCol();
