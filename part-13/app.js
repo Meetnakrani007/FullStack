@@ -49,5 +49,69 @@ async function getImg()
     let img = document.querySelector("img");
     img.setAttribute("src",link);
     
-})
+});
 
+//sending headers with api req
+
+const url3 = "https://icanhazdadjoke.com/";
+async function getJokes() 
+{
+    try
+    {
+    const config = { headers : { Accept : "application/json"} };
+    let res = await axios.get(url3 , config);
+    console.log(res.data.joke);
+    }
+    catch(err)
+    {
+        console.log(err);
+    }
+}
+
+
+//Activity
+
+    let url4="http://universities.hipolabs.com/search?name=";
+    let btn3 = document.querySelector("#third");
+
+    btn3.addEventListener("click",async ()=>
+    {
+        let input = document.querySelector("input");
+        let country = document.querySelector("input").value;
+        console.log(country);
+        input.value = " ";
+        let colArr = await getCol(country);
+        show(colArr);
+        
+    });
+
+    function show(colArr)
+    {
+        
+        let ul = document.querySelector("#list");
+        ul.innerText=" ";
+        for (col of colArr)
+        {
+            let li = document.createElement("li");
+            li.innerText = col.name;
+            ul.appendChild(li);
+             
+        }
+        
+        
+    }
+    
+
+    async function getCol(country)
+    {
+        try
+        {
+        let res = await axios.get(url4 + country);
+        return res.data;
+        }
+        catch(err)
+        {
+            console.log(err);
+            return alert("Collage Not found");
+        }
+    }
