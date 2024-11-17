@@ -71,7 +71,7 @@ async function getJokes()
 
 //Activity
 
-    let url4="http://universities.hipolabs.com/search?name=";
+    let url4="http://universities.hipolabs.com/search?country=";
     let btn3 = document.querySelector("#third");
 
     btn3.addEventListener("click",async ()=>
