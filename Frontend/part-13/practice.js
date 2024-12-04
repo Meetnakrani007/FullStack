@@ -1,4 +1,4 @@
-let url="http://universities.hipolabs.com/searchstate-province=";
+let url="http://universities.hipolabs.com/search?state-province=";
 let btn = document.querySelector("button");
 
 
