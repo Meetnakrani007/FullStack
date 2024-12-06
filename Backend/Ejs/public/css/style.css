@@ -1,0 +1,30 @@
+
+        img {
+            height: 200px;
+            width: 200px;
+            display: block;
+        }
+
+        .main {
+            display: flex; 
+            gap: 60px;
+        }
+
+        .post {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .post-details {
+            margin-top: 1rem;
+            font-size: 1.5rem;
+        }
+        p{
+            font-size: 2rem;
+        }
+        body
+        {
+            background-color: whitesmoke;
+        }
