@@ -1,0 +1,78 @@
+h1{
+    color: maroon;
+    padding-left: 33rem;
+}
+.main
+{
+    display: flex;
+    gap: 60px;
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding-top: 2.5rem;
+    flex-wrap: wrap;
+    
+
+}
+h2
+{
+    padding-top: 20px;
+    margin-left: 22rem;
+    margin-right: 20rem ;
+    padding-left: 2.5rem;
+    padding-bottom: 1rem;
+    border: 4px  solid black;
+    border-radius: 20px;
+    background-color: gainsboro;
+    
+
+}
+
+.post
+{
+    font-size: larger;
+    background-color: antiquewhite;
+    height: 400px;
+    width: 400px;
+    padding: 1rem;
+    margin-left: 29rem;
+    border: 4px , solid, black;
+    border-radius: 20px;
+    box-shadow: 2px 2px 4px black;
+    display: flex;
+    flex-direction: column; 
+    justify-content: space-between; 
+    align-items: center;
+    overflow: hidden; 
+    
+}
+
+.user
+{
+    font-style: italic ;
+    padding-bottom: 1rem;
+    text-align: center;
+   
+}
+.content
+{
+ flex-grow: 1; 
+ overflow: auto; 
+ width: 97%; 
+ text-align: center;
+ margin-bottom: 1rem;
+ margin-top: -1rem;
+}
+.back
+{
+    background-color: lightgray;;
+    font-size: large;
+    border: 4px , solid, black;
+    border-radius: 10px;
+    box-shadow: 0.5px 0.5px 1.5px black;
+    cursor: pointer;
+    margin-left: 5rem;
+    margin-right: 5rem;
+    margin-top: 2rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}

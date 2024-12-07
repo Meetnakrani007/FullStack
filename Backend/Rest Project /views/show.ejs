@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show Post In Detail</title>
+    <link rel="stylesheet" href="/style1.css">
+</head>
+<body>
+    <h1>Here Is Your Post</h1>
+    <section>
+        <h2>Post Id : <%= post.id %></h1>
+        <div class="post">
+            <h3 class="user">@<%= post.username %></h3>
+            <h4 class="content"><%= post.content %></h3>
+                <a href="http://localhost:8080/posts">
+                    <button class="back">Back</button>
+                </a>
+        </div>
+    </section>
+    
+</body>
+</html>
