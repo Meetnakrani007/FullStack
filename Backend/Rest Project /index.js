@@ -17,24 +17,7 @@ app.set("views",path.join(__dirname,"views"));
 app.use(express.static(path.join(__dirname,"/public/css")));
 app.use(express.static(path.join(__dirname,"/public/js")));
 
-let posts = [
-    {
-        id: uuidv4(),
-        username : "Meet",
-        content : "I am the junior Devloper",
-    },
-    {
-        id: uuidv4(),
-        username : "Kunj",
-        content : "He Knows DBMS",
-    },
-    {
-        id: uuidv4(),
-        username : "Dhruv",
-        content : "He is in it feild",
-    },
-
-];
+let posts = [];
 app.listen(port , ()=>
 {
     console.log(`port listening on : ${port}`);
@@ -78,4 +61,10 @@ app.get("/posts/:id/edit",(req,res)=>
         let { id } = req.params;
         let post = posts.find((p) => id === p.id );
        res.render("edit.ejs",{post});
+});
+app.delete("/posts/:id",(req,res)=>
+{
+    let { id } = req.params;
+    posts = posts.filter((p) => id !== p.id );
+    res.redirect("/posts");
 });

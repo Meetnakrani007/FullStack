@@ -34,7 +34,7 @@ h1{
 .user
 {
     font-style: italic ;
-   padding-bottom: 1rem;
+   padding-bottom: 0.5rem;
    text-align: center;
 }
 .content
@@ -50,7 +50,7 @@ h1{
 .new
 {
     background-color: lightgray;
-    margin-left: 34rem;
+    margin-left: 35.5rem;
     font-size: large;
     border: 4px , solid, black;
     border-radius: 20px;
@@ -82,4 +82,12 @@ h1{
 }
 a{
     text-decoration: none;
+}
+
+.del{
+    margin-left: 22rem;
+    font-size: x-large;
+    background: none;
+    border: none;
+    cursor: pointer;
 }

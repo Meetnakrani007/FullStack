@@ -6,15 +6,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>All posts</title>
     <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
     <h1 >Quora Posts</h1>
     <section class="main">
         <% for(post of posts)
         { %>
+            
             <div class="post">
-                <h3 class="user">@<%= post.username %></h3>
+                <div >
+                    <form method="POST" action="/posts/<%= post.id%>?_method=DELETE" >
+                        <button class="del" >
+                            <i class="fa-solid fa-trash-can delete "></i>
+                        </button>
+                            
+                    </form> 
+                </div>
+                <div class="user">
+                    <h3 class="user">@<%= post.username %> </h3>
+                    
+                </div>
+
+                
                 <h4 class="content"><%= post.content %></h4>
+                
                 <div class="post-actions">
                     <a href="http://localhost:8080/posts/<%= post.id %>">
                     <button class="detail">See in Detail</button>
