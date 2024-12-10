@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All users data</title>
+    <style>
+        table,td,th{
+            border: 1px solid black;
+        }
+        .form{
+            margin: 2rem;
+            margin-left: 35rem;
+            padding: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <form method="get" action="/user/add" >
+        <button class="form">Add user</button>
+    </form>
+    
+    <table>
+        <tr>
+            <th>
+                Id
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                Username
+            </th>
+        </tr>
+        <% for (user of users)
+        { %>
+            <tr>
+                <td><%=user.id %></td>
+                <td><%=user.email %></td>
+                <td><%=user.username %></td>
+                <td>
+                    <form method="GET" action="/user/<%= user.id%>/edit">
+                        <button>Edit Username</button>
+                    </form></td>
+                    <td>
+                    <form method="GET" action="/user/<%= user.id%>/delete">
+                        <button>Delete user</button>
+                    </form></td>
+            </tr>
+        <% } %>
+    
+
+    </table>
+</body>
+</html>
