@@ -23,31 +23,31 @@ const userSchema = mongoose.Schema(
 );
 const User = mongoose.model("User",userSchema);
 
-const user1 =new User({
-    name: "Adam",
-    email : "adam@gmail.com",
-    age: "18",
-});
-const user2 =new User({
-    name: "Eve",
-    email : "eve@gmail.com",
-    age: "18",
-});
+// const user1 =new User({
+//     name: "Adam",
+//     email : "adam@gmail.com",
+//     age: "18",
+// });
+// const user2 =new User({
+//     name: "Eve",
+//     email : "eve@gmail.com",
+//     age: "18",
+// });
 
 //findoneandupdatemany
-User.findOneAndUpdate({name: "Bruce"},{age: 64},{new : true}).then((res)=>{
-        console.log(res);
-    }).catch((err)=>{
-        console.log(err);
-    });
+// User.findOneAndUpdate({name: "Bruce"},{age: 64},{new : true}).then((res)=>{
+//         console.log(res);
+//     }).catch((err)=>{
+//         console.log(err);
+//     });
 
 //find by id and delete
 
-User.findByIdAndDelete("6759409d2234bc262931bada",{new: true}).then((res)=>{
-    console.log(res);
-}).catch((err)=>{
-    console.log(err);
-});
+// User.findByIdAndDelete("6759409d2234bc262931bada",{new: true}).then((res)=>{
+//     console.log(res);
+// }).catch((err)=>{
+//     console.log(err);
+// });
 
 
 //updatemany
@@ -58,11 +58,11 @@ User.findByIdAndDelete("6759409d2234bc262931bada",{new: true}).then((res)=>{
 // })
 
 //find by id 
-User.findById('6759409d2234bc262931bada').then((res)=>{
-    console.log(res);
-}).catch((err)=>{
-    console.log(err);
-})
+// User.findById('6759409d2234bc262931bada').then((res)=>{
+//     console.log(res);
+// }).catch((err)=>{
+//     console.log(err);
+// })
 
 //Find by find function
 
