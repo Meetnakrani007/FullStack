@@ -1,22 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wander Lust</title>
-</head>
+<% layout("/layouts/boilerplate") %>
 <body>
     <h1>All Detail for hotel</h1>
-    <form method="get" action="/listings/new" >
-    <button>Add new</button>
-    </form>
-    <ul>
-       <% for (listing of allListings){%>
-          <a href="/listings/<%= listing.id %>"><li> <%=listing.title%>
-        
-        </li></a>
-        <%}%>  
-    </ul>
+    <!-- <form method="get" action="/listings/new" >
+    <button>Add new</button> -->
+    <% for (listing of allListings){%>
+    <div class="card" style="width: 18rem;">
+        <img src="<%= listing.image %>" class="card-img-top" alt="listing-image">
+        <div class="card-body">
+          <p class="card-text">
+            <%=listing.title%>
+            <br>
+            &#8377;<%= listing.price.toLocaleString("en-In") %>
+            </p>
+        </div>
+      </div>
+      <%}%>
+   
 </body>
-</html>
+
