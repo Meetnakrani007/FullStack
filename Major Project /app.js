@@ -61,8 +61,11 @@ app.post("/listings",async(req,res)=>
 //edit route
 app.get("/listings/:id/edit", async (req,res)=>
 {
+    
     let { id } = req.params;
     const listing = await Listing.findById(id);
+   
+    console.log(imageUrl);
     res.render("listings/edit.ejs",{ listing});
 
 });
