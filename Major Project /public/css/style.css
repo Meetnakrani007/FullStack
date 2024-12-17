@@ -103,7 +103,7 @@ body{
     opacity: 0.2;
     background-color: white;
 }
-.btn
+.btn-add
 {
     background-color: #fe424d !important;
     border: none !important;
@@ -112,3 +112,19 @@ body{
 {
     font-size: 2rem !important;
 }
+/* Edit page */
+.btn-edit
+{
+    background-color: #fe424d !important;
+    border: none !important;
+}
+/* Show Page */
+.show-card
+{
+    height: 30vh;
+}
+.btns
+{
+    display: flex;
+}
+
