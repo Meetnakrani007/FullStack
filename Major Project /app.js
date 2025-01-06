@@ -130,7 +130,6 @@ app.use((err,req,res,next)=>{
 //     await sampleListing.save();
 //     console.log(sampleListing);
 //     res.send("Successful testing");
-    
 // });
 app.listen(8080,()=>{
 
