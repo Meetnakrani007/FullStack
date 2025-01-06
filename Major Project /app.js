@@ -119,7 +119,6 @@ app.use((err,req,res,next)=>{
     res.status(StatusCode).render("error.ejs",{ err});
 })
 
-
 // app.get("/testing",async (req,res)=>{
 //     const sampleListing = new Listing({
 //         title: "My home villa",
