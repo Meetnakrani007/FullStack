@@ -33,18 +33,19 @@
 
           <div class="col-8 offset-3 mb-3 mt-3">
             <h4>Leave a Review</h4>
-            <form>
+            <form method="post" action="/listings/<%= listing.id %>/reviews">
             <div>
               <label for="rating" class="form-label">Rating</label>
               <input type="range" min="1" max="5" id="rating" name="review[rating]" class="form-range">
-            </form>
+            
           </div>
 
           <div class="mb-3">
             <label for="comment" class="form-label">Comments</label>
-            <textarea  id="comment" name="review" cols="30" rows="5"  class="form-control" ></textarea>
+            <textarea  id="comment" name="review[comment]" cols="30" rows="5"  class="form-control" ></textarea>
           </div>
           <button class="btn btn-outline-dark">Submit</button>
+          </form>
         </div>
           
                     
