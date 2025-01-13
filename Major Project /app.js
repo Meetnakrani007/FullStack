@@ -9,6 +9,7 @@ const wrapAscync = require("./utils/wrapAscync.js");
 const ExpressError = require("./utils/ExpressError.js");
 const { listingSchema} = require("./schema.js");
 const Review = require("./models/reviews.js");
+const { reviewSchema} = require("./schema.js");
 
 
 
@@ -31,9 +32,26 @@ async function main() {
     await mongoose.connect('mongodb://127.0.0.1:27017/wanderlust');
 }
 
+//server side for listing
 const validateListing = (req,res,next)=>
 {
     let {error} = listingSchema.validate(req.body);
+   
+    if(error)
+    {
+        let errMsg = error.details.map((el) => el.message).join(",");
+        throw new ExpressError(400,errMsg);
+    }else
+    {
+        next();
+    }
+    
+}
+
+//server side for review
+const validateReview = (req,res,next)=>
+{
+    let {error} = reviewSchema.validate(req.body);
    
     if(error)
     {
@@ -65,7 +83,7 @@ app.get("/listings",wrapAscync(async(req,res)=>{
 app.get("/listings/:id", wrapAscync(async (req,res)=>
 {
     let { id } = req.params;
-    const listing = await Listing.findById(id);
+    const listing = await Listing.findById(id).populate("reviews");
     res.render("listings/show.ejs",{listing});
 }));
 
@@ -110,16 +128,26 @@ app.delete("/listings/:id",async (req,res)=>
     
 });
 
+//delete rivew route
+app.delete("/listings/:id/reviews/:reviewId",wrapAscync(async (req,res)=>
+{
+    let { id , reviewId } = req.params;
+    await Listing.findByIdAndUpdate(id,{$pull: {reviews: reviewId}});
+    await Review.findByIdAndDelete(reviewId);
+    res.redirect(`/listings/${id}`);
+    
+}));
+
 //Reviews 
 //post method 
-app.post("/listings/:id/reviews",async(req,res)=>{
+app.post("/listings/:id/reviews",validateReview,wrapAscync(async(req,res)=>{
     let listing = await Listing.findById(req.params.id);
     let newReview = new Review(req.body.review); 
     listing.reviews.push(newReview);
     await listing.save();
     await newReview.save();
-    res.send("Review Added Successfuly");
-});
+    res.redirect(`/listings/${listing._id}`);
+}));
 
 
 app.use("*",(req,res,next)=>
