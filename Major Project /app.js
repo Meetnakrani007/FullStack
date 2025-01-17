@@ -12,7 +12,7 @@ const Review = require("./models/reviews.js");
 const listings = require("./routes/listing.js");
 const reviews = require("./routes/review.js");
 const session = require("express-session");
-
+const flash = require("connect-flash");
 
 
 app.use(express.urlencoded({extended: true}));
@@ -34,7 +34,6 @@ const sessionOptions = {
     }
 }
 
-app.use(session(sessionOptions));
 
 
 main().then((res)=>{
@@ -50,6 +49,14 @@ async function main() {
 
 app.get("/",(req,res)=>{
     res.send("woriking");
+});
+
+app.use(session(sessionOptions));
+app.use(flash());
+
+app.use((req,res,next)=>{
+    res.locals.successMsg = req.flash('success');
+    next();
 });
 
 app.use("/listings",listings);
