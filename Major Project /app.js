@@ -75,6 +75,5 @@ app.use((err,req,res,next)=>{
     res.status(StatusCode).render("error.ejs",{ err});
 });
 app.listen(8080,()=>{
-
     console.log("app listning on 8080 ");
 });

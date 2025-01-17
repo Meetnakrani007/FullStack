@@ -79,6 +79,7 @@ router.delete("/:id",async (req,res)=>
     let { id } = req.params;
     let deleteListing = await Listing.findByIdAndDelete(id);
     console.log(deleteListing);
+    req.flash("success","New listing delete successfully!");
     res.redirect("/listings");
     
 });
