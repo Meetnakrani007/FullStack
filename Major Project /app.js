@@ -11,6 +11,9 @@ const { listingSchema , reviewSchema} = require("./schema.js");
 const Review = require("./models/reviews.js");
 const listings = require("./routes/listing.js");
 const reviews = require("./routes/review.js");
+const session = require("express-session");
+
+
 
 app.use(express.urlencoded({extended: true}));
 app.set("view engine","ejs");
@@ -19,6 +22,19 @@ app.use(methodOverride("_method"));
 app.engine("ejs", ejsMate);
 app.use(express.static(path.join(__dirname,"public")));
 
+const sessionOptions = {
+    secret : "mysupersecretcode",
+    resave: false,
+    saveUninitialized : true , 
+    cookie : {
+        expires : Date.now() + 7 * 24 * 60 * 60 * 1000 ,
+        maxAge :  7 * 24 * 60 * 60 * 1000,
+        httpOnly : true,
+
+    }
+}
+
+app.use(session(sessionOptions));
 
 
 main().then((res)=>{
