@@ -4,6 +4,7 @@ const Listing = require("../models/listing.js");
 const wrapAscync = require("../utils/wrapAscync.js");
 const { listingSchema, reviewSchema } = require("../schema.js");
 const ExpressError = require("../utils/ExpressError.js");
+const { isLoggedin } = require("../middleware.js");
 
 //server side for listing
 const validateListing = (req, res, next) => {
@@ -17,7 +18,7 @@ const validateListing = (req, res, next) => {
   }
 };
 //add route
-router.get("/new", (req, res) => {
+router.get("/new", isLoggedin, (req, res) => {
   res.render("listings/new.ejs");
 });
 
@@ -47,6 +48,7 @@ router.get(
 //create route
 router.post(
   "/",
+  isLoggedin,
   validateListing,
   wrapAscync(async (req, res, next) => {
     let newListing = new Listing(req.body.listing);
@@ -59,6 +61,7 @@ router.post(
 //edit route
 router.get(
   "/:id/edit",
+  isLoggedin,
   wrapAscync(async (req, res) => {
     let { id } = req.params;
     const listing = await Listing.findById(id);
@@ -73,6 +76,7 @@ router.get(
 //update route
 router.patch(
   "/:id",
+  isLoggedin,
   validateListing,
   wrapAscync(async (req, res) => {
     let { id } = req.params;
@@ -82,7 +86,7 @@ router.patch(
 );
 
 //delete route
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", isLoggedin, async (req, res) => {
   let { id } = req.params;
   let deleteListing = await Listing.findByIdAndDelete(id);
   console.log(deleteListing);
