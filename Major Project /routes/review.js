@@ -5,6 +5,7 @@ const wrapAscync = require("../utils/wrapAscync.js");
 const ExpressError = require("../utils/ExpressError.js");
 const { reviewSchema } = require("../schema.js");
 const Review = require("../models/reviews.js");
+const { isLoggedin, isReviewAuthor } = require("../middleware.js");
 
 //server side for review
 const validateReview = (req, res, next) => {
@@ -21,6 +22,8 @@ const validateReview = (req, res, next) => {
 //delete reivew route
 router.delete(
   "/:reviewId",
+  isLoggedin,
+  isReviewAuthor,
   wrapAscync(async (req, res) => {
     let { id, reviewId } = req.params;
     await Listing.findByIdAndUpdate(id, { $pull: { reviews: reviewId } });
@@ -33,10 +36,13 @@ router.delete(
 //post method
 router.post(
   "/",
+  isLoggedin,
   validateReview,
+
   wrapAscync(async (req, res) => {
     let listing = await Listing.findById(req.params.id);
     let newReview = new Review(req.body.review);
+    newReview.author = req.user._id;
     listing.reviews.push(newReview);
     await listing.save();
     await newReview.save();

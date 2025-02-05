@@ -5,18 +5,8 @@ const wrapAscync = require("../utils/wrapAscync.js");
 const { listingSchema, reviewSchema } = require("../schema.js");
 const ExpressError = require("../utils/ExpressError.js");
 const { isLoggedin } = require("../middleware.js");
+const { validateListing, isOwner } = require("../middleware.js");
 
-//server side for listing
-const validateListing = (req, res, next) => {
-  let { error } = listingSchema.validate(req.body);
-
-  if (error) {
-    let errMsg = error.details.map((el) => el.message).join(",");
-    throw new ExpressError(400, errMsg);
-  } else {
-    next();
-  }
-};
 //add route
 router.get("/new", isLoggedin, (req, res) => {
   res.render("listings/new.ejs");
@@ -37,7 +27,12 @@ router.get(
   wrapAscync(async (req, res) => {
     let { id } = req.params;
     const listing = await Listing.findById(id)
-      .populate("reviews")
+      .populate({
+        path: "reviews",
+        populate: {
+          path: "author",
+        },
+      })
       .populate("owner");
     if (!listing) {
       req.flash("error", "Listing you requested for does not exist");
@@ -66,6 +61,7 @@ router.post(
 router.get(
   "/:id/edit",
   isLoggedin,
+  isOwner,
   wrapAscync(async (req, res) => {
     let { id } = req.params;
     const listing = await Listing.findById(id);
@@ -90,7 +86,7 @@ router.patch(
 );
 
 //delete route
-router.delete("/:id", isLoggedin, async (req, res) => {
+router.delete("/:id", isLoggedin, isOwner, async (req, res) => {
   let { id } = req.params;
   let deleteListing = await Listing.findByIdAndDelete(id);
   console.log(deleteListing);
