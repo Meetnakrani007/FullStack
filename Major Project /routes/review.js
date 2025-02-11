@@ -6,6 +6,7 @@ const ExpressError = require("../utils/ExpressError.js");
 const { reviewSchema } = require("../schema.js");
 const Review = require("../models/reviews.js");
 const { isLoggedin, isReviewAuthor } = require("../middleware.js");
+const reviewController = require("../controllers/review.js");
 
 //server side for review
 const validateReview = (req, res, next) => {
@@ -24,13 +25,7 @@ router.delete(
   "/:reviewId",
   isLoggedin,
   isReviewAuthor,
-  wrapAscync(async (req, res) => {
-    let { id, reviewId } = req.params;
-    await Listing.findByIdAndUpdate(id, { $pull: { reviews: reviewId } });
-    await Review.findByIdAndDelete(reviewId);
-    req.flash("success", "Review delete successfully!");
-    res.redirect(`/listings/${id}`);
-  })
+  wrapAscync(reviewController.destroyReview)
 );
 
 //post method
@@ -39,16 +34,7 @@ router.post(
   isLoggedin,
   validateReview,
 
-  wrapAscync(async (req, res) => {
-    let listing = await Listing.findById(req.params.id);
-    let newReview = new Review(req.body.review);
-    newReview.author = req.user._id;
-    listing.reviews.push(newReview);
-    await listing.save();
-    await newReview.save();
-    req.flash("success", "New review added successfully!");
-    res.redirect(`/listings/${listing._id}`);
-  })
+  wrapAscync(reviewController.createReview)
 );
 
 module.exports = router;
