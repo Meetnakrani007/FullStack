@@ -5,24 +5,25 @@ const wrapAscync = require("../utils/wrapAscync.js");
 const passport = require("passport");
 const { saveRedirectUrl } = require("../middleware.js");
 const userController = require("../controllers/user.js");
+const { route } = require("./listing.js");
 //signup
-router.get("/signup", userController.renderSignup);
-
-router.post("/signup", wrapAscync(userController.signup));
+router
+  .route("/signup")
+  .get(userController.renderSignup)
+  .post(wrapAscync(userController.signup));
 
 //Login
-
-router.get("/login", userController.renderLogin);
-
-router.post(
-  "/login",
-  saveRedirectUrl,
-  passport.authenticate("local", {
-    failureRedirect: "/login",
-    failureFlash: true,
-  }),
-  userController.login
-);
+router
+  .route("/login")
+  .get(userController.renderLogin)
+  .post(
+    saveRedirectUrl,
+    passport.authenticate("local", {
+      failureRedirect: "/login",
+      failureFlash: true,
+    }),
+    userController.login
+  );
 
 //Logout
 router.get("/logout", userController.logout);

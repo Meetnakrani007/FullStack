@@ -13,19 +13,16 @@ router.get("/new", isLoggedin, (req, res) => {
   res.render("listings/new.ejs");
 });
 
-//root route
-router.get("/", wrapAscync(listingController.index));
+router
+  .route("/")
+  .get(wrapAscync(listingController.index))
+  .post(isLoggedin, validateListing, wrapAscync(listingController.showListing));
 
-//show route
-router.get("/:id", wrapAscync(listingController.renderNewForm));
-
-//create route
-router.post(
-  "/",
-  isLoggedin,
-  validateListing,
-  wrapAscync(listingController.showListing)
-);
+router
+  .route("/:id")
+  .get(wrapAscync(listingController.renderNewForm))
+  .patch(isLoggedin, validateListing, wrapAscync(listingController.updateForm))
+  .delete(isLoggedin, isOwner, wrapAscync(listingController.destroyListing));
 
 //edit route
 router.get(
@@ -33,22 +30,6 @@ router.get(
   isLoggedin,
   isOwner,
   wrapAscync(listingController.editForm)
-);
-
-//update route
-router.patch(
-  "/:id",
-  isLoggedin,
-  validateListing,
-  wrapAscync(listingController.updateForm)
-);
-
-//delete route
-router.delete(
-  "/:id",
-  isLoggedin,
-  isOwner,
-  wrapAscync(listingController.destroyListing)
 );
 
 module.exports = router;
