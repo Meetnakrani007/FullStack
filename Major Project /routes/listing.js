@@ -7,6 +7,8 @@ const ExpressError = require("../utils/ExpressError.js");
 const { isLoggedin } = require("../middleware.js");
 const { validateListing, isOwner } = require("../middleware.js");
 const listingController = require("../controllers/listing.js");
+const multer = require("multer");
+const upload = multer({ dest: "uploads/" });
 
 //add route
 router.get("/new", isLoggedin, (req, res) => {
@@ -16,7 +18,10 @@ router.get("/new", isLoggedin, (req, res) => {
 router
   .route("/")
   .get(wrapAscync(listingController.index))
-  .post(isLoggedin, validateListing, wrapAscync(listingController.showListing));
+  // .post(isLoggedin, validateListing, wrapAscync(listingController.showListing));
+  .post(upload.single("listing[image]"), (req, res) => {
+    res.send(req.file);
+  });
 
 router
   .route("/:id")
