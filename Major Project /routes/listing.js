@@ -8,20 +8,21 @@ const { isLoggedin } = require("../middleware.js");
 const { validateListing, isOwner } = require("../middleware.js");
 const listingController = require("../controllers/listing.js");
 const multer = require("multer");
-const upload = multer({ dest: "uploads/" });
+const { storage } = require("../cloudConfig.js");
+const upload = multer({ storage });
 
 //add route
 router.get("/new", isLoggedin, (req, res) => {
   res.render("listings/new.ejs");
 });
 
-router
-  .route("/")
-  .get(wrapAscync(listingController.index))
-  // .post(isLoggedin, validateListing, wrapAscync(listingController.showListing));
-  .post(upload.single("listing[image]"), (req, res) => {
-    res.send(req.file);
-  });
+router.route("/").get(wrapAscync(listingController.index)).post(
+  isLoggedin,
+  upload.single("listing[image]"),
+  validateListing,
+
+  wrapAscync(listingController.createListing)
+);
 
 router
   .route("/:id")
