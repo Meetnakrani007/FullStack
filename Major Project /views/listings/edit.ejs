@@ -9,6 +9,7 @@
         action="/listings/<%= listing._id %>?_method=PATCH"
         class="needs-validation"
         novalidate
+        enctype="multipart/form-data"
       >
         <div class="mb-3">
           <label for="title" class="form-label"><b>Title</b></label>
@@ -37,15 +38,14 @@
           <div class="invalid-feedback">Description should be short</div>
         </div>
         <div class="mb-3">
-          <label for="image" class="form-label"><b>Image</b></label>
+          <label for="image" class="form-label"><b>Upload a new Image</b></label>
           <input
             name="listing[image]"
-            value="<%= listing.image%>"
-            type="tex"
+            type="file"
             class="form-control"
-            required
+            
           />
-          <div class="invalid-feedback">Image link should be valid!</div>
+          
         </div>
         <div class="row">
           <div class="mb-3 col-md-4">

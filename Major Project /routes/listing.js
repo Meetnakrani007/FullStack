@@ -27,7 +27,7 @@ router.route("/").get(wrapAscync(listingController.index)).post(
 router
   .route("/:id")
   .get(wrapAscync(listingController.renderNewForm))
-  .patch(isLoggedin, validateListing, wrapAscync(listingController.updateForm))
+  .patch(isLoggedin,  upload.single("listing[image]"),validateListing, wrapAscync(listingController.updateForm))
   .delete(isLoggedin, isOwner, wrapAscync(listingController.destroyListing));
 
 //edit route
