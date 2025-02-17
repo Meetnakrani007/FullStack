@@ -91,6 +91,11 @@ body {
   background-color: #fe424d !important;
   border: none !important;
 }
+.editImage
+{
+  height: 250px;
+  width: 300px;
+}
 /* Show Page */
 .show-card {
   height: 30vh;
