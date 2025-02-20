@@ -1,10 +1,59 @@
 <% layout("/layouts/boilerplate") %>
+<style>
+#fillters{
+  display: flex;
+  flex-wrap: wrap;
+ 
+
+}
+
+.fillter{
+  text-align: center;
+  margin-right: 2rem;
+  margin-top: 2rem;
+  opacity: 0.6;
+}
+.fillter:hover{
+  opacity: 1;
+  cursor: pointer;
+}
+</style>
 <body>
-  <h3>All Details for hotel</h3>
-  <br />
-  <!-- <form method="get" action="/listings/new" >
-    <button>Add new</button> -->
-  <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
+<div id="fillters">
+  <div class="fillter">
+    <div><i class="fa-solid fa-fire"></i></div>
+   <p>Trending</p> 
+  </div>
+
+  <div class="fillter">
+    <div><i class="fa-solid fa-bed"></i></div>
+   <p>Rooms</p> 
+  </div>
+
+  <div class="fillter">
+    <div><i class="fa-solid fa-mountain-city"></i></div>
+   <p>Iconic Cities</p> 
+  </div>
+
+  <div class="fillter">
+    <div><i class="fa-solid fa-mountain"></i></div>
+   <p>Mountains</p> 
+  </div>
+
+  <div class="fillter">
+    <div><i class="fa-solid fa-chess-rook"></i></div>
+   <p>Castels</p> 
+  </div>
+
+  <div class="fillter">
+    <div><i class="fa-solid fa-person-swimming"></i></div>
+   <p>Amazing Pools</p> 
+  </div>
+</div>
+
+
+
+  <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-3">
     <% for (listing of allListings){%>
     <a href="/listings/<%= listing.id %>" class="c-links">
       <div class="card col listing-card">

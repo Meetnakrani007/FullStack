@@ -52,9 +52,9 @@ async function main() {
   await mongoose.connect("mongodb://127.0.0.1:27017/wanderlust");
 }
 
-app.get("/", (req, res) => {
-  res.send("woriking");
-});
+// app.get("/", (req, res) => {
+//   res.send("woriking");
+// });
 
 app.use(session(sessionOptions));
 app.use(flash());

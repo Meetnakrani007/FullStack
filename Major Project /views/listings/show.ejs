@@ -35,7 +35,7 @@
 
           <!-- Review -->
           
-          
+      
           <div class="col-8 offset-3 mb-3 mt-3">
             <% if(currUser){ %>
             <h4>Leave a Review</h4>
@@ -71,6 +71,7 @@
           </form>
           <% } %>
           <hr>
+          <% if(listing.reviews.length > 0) {%>
        <p><b>All Reviews</b></p>
        <div class="row">
 
@@ -91,5 +92,6 @@
           <% } %>
         </div>
       </div>
+      <% } %>
     </div>
 </body>
