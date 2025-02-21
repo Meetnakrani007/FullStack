@@ -3,23 +3,38 @@
 #fillters{
   display: flex;
   flex-wrap: wrap;
- 
+ align-items: center;
 
 }
-
 .fillter{
   text-align: center;
-  margin-right: 2rem;
+  margin-right: 3rem;
   margin-top: 2rem;
   opacity: 0.6;
+}
+.fillter p {
+  font-size: 0.8rem;
 }
 .fillter:hover{
   opacity: 1;
   cursor: pointer;
 }
+.tax-info{
+  display: none;
+}
+.tax-toogle{
+  border: 1px solid black;
+  border-radius: 1rem;
+  height: 3rem;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  margin-left: 6rem;
+
+}
 </style>
 <body>
-<div id="fillters">
+<div id="fillters" class="collapse navbar-collapse">
   <div class="fillter">
     <div><i class="fa-solid fa-fire"></i></div>
    <p>Trending</p> 
@@ -49,6 +64,27 @@
     <div><i class="fa-solid fa-person-swimming"></i></div>
    <p>Amazing Pools</p> 
   </div>
+
+  <div class="fillter">
+    <div><i class="fa-solid fa-campground"></i></div>
+   <p>Camping</p> 
+  </div>
+
+  <div class="fillter">
+    <div><i class="fa-solid fa-cow"></i></div>
+   <p>Farms</p> 
+  </div>
+
+  <div class="fillter">
+    <div><i class="fa-solid fa-snowflake"></i></div>
+   <p>Arctic</p> 
+  </div>
+<div class="tax-toogle">
+  <div class="form-check-reverse form-switch">
+    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" style="cursor: pointer;">
+    <label class="form-check-label" for="flexSwitchCheckDefault">Display total after tax</label>
+  </div>
+</div>
 </div>
 
 
@@ -68,7 +104,8 @@
           <p class="card-text">
             <b> <%= listing.title %> </b>
             <br />
-            &#8377; <%= listing.price.toLocaleString("en-In") %>
+            &#8377; <%= listing.price.toLocaleString("en-In") %>/night
+            <i class="tax-info">&nbsp;&nbsp;+18% GST</i>
           </p>
         </div>
       </div>
@@ -77,3 +114,21 @@
     <%}%>
   </div>
 </body>
+
+<script>
+  let taxswitch = document.getElementById("flexSwitchCheckDefault");
+  taxswitch.addEventListener("click",()=>
+  {
+    let taxInfo = document.getElementsByClassName("tax-info");
+    for(info of taxInfo)
+    {
+      if(info.style.display != "inline")
+      {
+        info.style.display = "inline";
+      }
+      else{
+        info.style.display = "none"
+      }
+    }
+  })
+</script>
