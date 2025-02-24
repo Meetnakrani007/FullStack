@@ -40,6 +40,7 @@ const sessionOptions = {
   },
 };
 
+const dbUrl = process.env.ATLASDB_URL;
 main()
   .then((res) => {
     console.log("connected with DB");
@@ -49,7 +50,7 @@ main()
   });
 
 async function main() {
-  await mongoose.connect("mongodb://127.0.0.1:27017/wanderlust");
+  await mongoose.connect(dbUrl);
 }
 
 // app.get("/", (req, res) => {
