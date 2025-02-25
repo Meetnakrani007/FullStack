@@ -17,10 +17,12 @@ const listingRouter = require("./routes/listing.js");
 const reviewRouter = require("./routes/review.js");
 const userRouter = require("./routes/user.js");
 const session = require("express-session");
+const MongoStore = require('connect-mongo');
 const flash = require("connect-flash");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const User = require("./models/user.js");
+const dbUrl = process.env.ATLASDB_URL;
 
 app.use(express.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
@@ -29,7 +31,21 @@ app.use(methodOverride("_method"));
 app.engine("ejs", ejsMate);
 app.use(express.static(path.join(__dirname, "public")));
 
+const store = MongoStore.create(
+  {
+    mongoUrl : dbUrl,
+    crypto : {
+      secret : "mysupersecretcode",
+    },
+    touchAfter: 24 * 3600,
+  }
+);
+store.on("error",()=>{
+  console.log("ERROR IN DATA BASE SESSION",err)
+});
+
 const sessionOptions = {
+  store,
   secret: "mysupersecretcode",
   resave: false,
   saveUninitialized: true,
@@ -40,7 +56,7 @@ const sessionOptions = {
   },
 };
 
-const dbUrl = process.env.ATLASDB_URL;
+
 main()
   .then((res) => {
     console.log("connected with DB");
@@ -53,9 +69,9 @@ async function main() {
   await mongoose.connect(dbUrl);
 }
 
-// app.get("/", (req, res) => {
-//   res.send("woriking");
-// });
+app.get("/", (req, res) => {
+  res.redirect("/listings");
+});
 
 app.use(session(sessionOptions));
 app.use(flash());
