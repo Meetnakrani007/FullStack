@@ -69,8 +69,8 @@ async function main() {
   await mongoose.connect(dbUrl);
 }
 
-app.get("/", (req, res) => {
-  res.redirect("/listings");
+app.get("https://wanderlust-project-full-stack.onrender.com/", (req, res) => {
+  res.redirect("https://wanderlust-project-full-stack.onrender.com/listings");
 });
 
 app.use(session(sessionOptions));
