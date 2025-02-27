@@ -1,93 +1,100 @@
 <% layout("/layouts/boilerplate") %>
 <style>
-#fillters{
-  display: flex;
-  flex-wrap: wrap;
- align-items: center;
+  /* Filters Styling */
+  .fillter {
+    text-align: center;
+    opacity: 0.6;
+    padding: 1rem;
+    cursor: pointer;
+  }
 
-}
-.fillter{
-  text-align: center;
-  margin-right: 3rem;
-  margin-top: 2rem;
-  opacity: 0.6;
-}
-.fillter p {
-  font-size: 0.8rem;
-}
-.fillter:hover{
-  opacity: 1;
-  cursor: pointer;
-}
-.tax-info{
-  display: none;
-}
-.tax-toogle{
-  border: 1px solid black;
-  border-radius: 1rem;
-  height: 3rem;
-  padding: 1rem;
-  display: flex;
-  align-items: center;
-  margin-left: 6rem;
+  .fillter p {
+    font-size: 0.8rem;
+    margin: 0;
+  }
 
-}
+  .fillter:hover {
+    opacity: 1;
+  }
+
+  /* Tax toggle (always visible) */
+  .tax-toogle {
+    border: 1px solid black;
+    border-radius: 1rem;
+    height: 3rem;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    white-space: nowrap; /* Prevents text from wrapping */
+  }
+
+  /* Layout for Large Screens (≥ 768px) */
+  @media (min-width: 768px) {
+    .filters-container {
+      display: flex !important;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    #filters.filter-collapse {
+      display: flex !important;
+      flex-wrap: nowrap; /* Ensures all filters stay in one row */
+      gap: 2rem; /* Space between filters */
+    }
+
+    .tax-toogle {
+      margin-left: auto; /* Push tax toggle to the right */
+    }
+  }
+
+  /* Collapse Filters into a Button on Small Screens (< 768px) */
+  @media (max-width: 767px) {
+    #filters.filter-collapse {
+      display: none; /* Hide filters initially */
+    }
+
+    #filters.filter-collapse.show {
+      display: flex !important;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+    }
+  }
 </style>
+</head>
 <body>
-<div id="fillters" class="collapse navbar-collapse">
-  <div class="fillter">
-    <div><i class="fa-solid fa-fire"></i></div>
-   <p>Trending</p> 
+
+<div class="container mt-3">
+<!-- Toggle Button for Small Screens -->
+<div class="d-flex align-items-center mb-3">
+  <button class="btn btn-outline-dark d-md-none" type="button" data-bs-toggle="collapse" data-bs-target="#filters" aria-expanded="false" aria-controls="filters">
+    <i class="fa-solid fa-sliders"></i> Filters
+  </button>
+</div>
+
+<!-- Filters & Tax Toggle (Combined) -->
+<div class="filters-container d-md-flex align-items-center">
+  <div id="filters" class="collapse filter-collapse d-md-flex">
+    <div class="fillter"><i class="fa-solid fa-fire"></i><p>Trending</p></div>
+    <div class="fillter"><i class="fa-solid fa-bed"></i><p>Rooms</p></div>
+    <div class="fillter"><i class="fa-solid fa-mountain-city"></i><p>Iconic Cities</p></div>
+    <div class="fillter"><i class="fa-solid fa-mountain"></i><p>Mountains</p></div>
+    <div class="fillter"><i class="fa-solid fa-chess-rook"></i><p>Castles</p></div>
+    <div class="fillter"><i class="fa-solid fa-person-swimming"></i><p>Amazing Pools</p></div>
+    <div class="fillter"><i class="fa-solid fa-campground"></i><p>Camping</p></div>
+    <div class="fillter"><i class="fa-solid fa-cow"></i><p>Farms</p></div>
+    <div class="fillter"><i class="fa-solid fa-snowflake"></i><p>Arctic</p></div>
   </div>
 
-  <div class="fillter">
-    <div><i class="fa-solid fa-bed"></i></div>
-   <p>Rooms</p> 
-  </div>
-
-  <div class="fillter">
-    <div><i class="fa-solid fa-mountain-city"></i></div>
-   <p>Iconic Cities</p> 
-  </div>
-
-  <div class="fillter">
-    <div><i class="fa-solid fa-mountain"></i></div>
-   <p>Mountains</p> 
-  </div>
-
-  <div class="fillter">
-    <div><i class="fa-solid fa-chess-rook"></i></div>
-   <p>Castels</p> 
-  </div>
-
-  <div class="fillter">
-    <div><i class="fa-solid fa-person-swimming"></i></div>
-   <p>Amazing Pools</p> 
-  </div>
-
-  <div class="fillter">
-    <div><i class="fa-solid fa-campground"></i></div>
-   <p>Camping</p> 
-  </div>
-
-  <div class="fillter">
-    <div><i class="fa-solid fa-cow"></i></div>
-   <p>Farms</p> 
-  </div>
-
-  <div class="fillter">
-    <div><i class="fa-solid fa-snowflake"></i></div>
-   <p>Arctic</p> 
-  </div>
-<div class="tax-toogle">
-  <div class="form-check-reverse form-switch">
-    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" style="cursor: pointer;">
-    <label class="form-check-label" for="flexSwitchCheckDefault">Display total after tax</label>
+  <!-- Tax Toggle (Always Visible) -->
+  <div class="tax-toogle ms-md-3">
+    <div class="form-check form-switch">
+      <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+      <label class="form-check-label" for="flexSwitchCheckDefault">Display total after tax</label>
+    </div>
   </div>
 </div>
 </div>
-
-
 
   <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-3">
     <% for (listing of allListings){%>

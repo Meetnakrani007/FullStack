@@ -19,6 +19,13 @@ body {
 .nav-link {
   color: #222222 !important;
 }
+.navbar-collapse
+{
+  background-color: #ebebeb;
+}
+.show{
+  padding-top: 1rem;
+}
 
 /*Footer*/
 .f-info-links a {
